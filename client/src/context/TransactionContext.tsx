@@ -103,6 +103,7 @@ export const TransactionProvider = ({children} : ProviderProps) => {
             const accounts = await ethereum.request({method: 'eth_requestAccounts'});
 
             setCurrentAccount(accounts[0])
+            getAllTransactions();
         }catch(error){
             console.log(error)
 
@@ -150,10 +151,6 @@ export const TransactionProvider = ({children} : ProviderProps) => {
         checkIfWalletIsConnected();
         checkIfTransactionsExist();
     }, [])
-
-    useEffect(() => {
-        console.log(formData)
-    }, [formData])
 
     return(
         <TransactionContext.Provider value={{
